@@ -10,15 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/mathiasVoelckerPUCRS/T1-backend.git"
   },
-  "author": "mathias-larissa",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mathiasVoelckerPUCRS/T1-backend/issues"
   },
   "homepage": "https://github.com/mathiasVoelckerPUCRS/T1-backend#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "mongoose": "^5.3.6"
+    "mysql": "^2.16.0"
   }
 }
