@@ -1,6 +1,5 @@
 let mysql  = require('mysql');
 let config = require('./config.js');
-console.log(config);
 let connection = mysql.createConnection(config);
 
 let sql = `create table if not exists exemplo(
