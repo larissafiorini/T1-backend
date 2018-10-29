@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mathiasVoelckerPUCRS/T1-backend#readme",
   "dependencies": {
+    "enum": "^2.5.0",
     "mysql": "^2.16.0"
   }
 }

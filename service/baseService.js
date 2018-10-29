@@ -34,16 +34,15 @@ module.exports = {
         
         sql = `insert into ${tableName} (`
         for(var i = 0; i < atributes.length; i++) {
-            sql += `${atributes[0].name},`
+            sql += `${atributes[i].name},`
         }
         sql = sql.substring(0, sql.length-1);
         sql += ') VALUES (';
-        for(var i = 0; i < atributes.length; i++) {
-            sql += `${atributes[0].value},`
+        for(var i = 0; i < atributes.length; i++) {            
+            sql += `${atributes[i].value},`
         }
         sql = sql.substring(0, sql.length-1);
         sql += ')';
-        console.log(sql);
         connection.query(sql, function(err, results, fields) {
             if (err) {
                 console.log(err.message);
