@@ -73,24 +73,43 @@ module.exports = {
                 }
             }); 
         },
-        deleteRow(tableName, row_name, row_value) { 
-            let connection = mysql.createConnection(config);
-    
+    deleteRow(tableName, row_name, row_value) { 
+        let connection = mysql.createConnection(config);
 
-            sql = `delete from ${tableName} WHERE ${row_name} = ${row_value}`
-          
-            console.log(sql);
-            connection.query(sql, function(err, results, fields) {
-                if (err) {
-                    console.log(err.message);
-                }
-            });
+        sql = `delete from ${tableName} WHERE ${row_name} = ${row_value}`
         
-            connection.end(function(err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-            }); 
-        }
+        console.log(sql);
+        connection.query(sql, function(err, results, fields) {
+            if (err) {
+                console.log(err.message);
+            }
+        });
+    
+        connection.end(function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+        }); 
+    },
+    updateRow(tableName, row_name,row_value ,new_row_name, new_row_value) { 
+        let connection = mysql.createConnection(config);
+
+        sql = `update ${tableName} set ${new_row_name} = '${new_row_value}' where ${row_name} = '${row_value}' ;`
+        
+        console.log(sql);
+        connection.query(sql, function(err, results, fields) {
+            if (err) {
+                console.log(err.message);
+            }
+        });
+    
+        connection.end(function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+        }); 
+    }
+
+    
 }
 

@@ -18,6 +18,8 @@ atributosValores.push(new Atribute(name = 'numero', value = 31));
 //service.createTable('endereco', atributos);
 //service.insertInto('endereco', atributosValores);
 //var teste = service.findAll('Eu');
-service.deleteRow('endereco','id','2');
+//service.deleteRow('endereco','id','2');
+
+service.updateRow('Eu','id','1','nome','novonome');
 // console.log(teste);
 // teste
