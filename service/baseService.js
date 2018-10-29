@@ -123,6 +123,26 @@ module.exports = {
         })
     },
 
+    updateRow(tableName, atribute ,new_atribute) { 
+        let connection = mysql.createConnection(config);
+
+        sql = `update ${tableName} set ${atribute.name} = '${atribute.value}' where ${new_atribute.name} = '${new_atribute.value}';`
+        
+        console.log(sql);
+        connection.query(sql, function(err, results, fields) {
+            if (err) {
+                console.log(err.message);
+            }
+        });
+    
+        connection.end(function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+        }); 
+    },
+
+
     delete(tableName, id) {
         return new Promise(
             (resolve, reject) => {
@@ -142,6 +162,26 @@ module.exports = {
                 }
             });
         })
+    },
+
+    deleteRow(tableName, atribute) { 
+        let connection = mysql.createConnection(config);
+
+
+        sql = `delete from ${tableName} WHERE ${atribute.name} = ${atribute.value}`
+      
+        console.log(sql);
+        connection.query(sql, function(err, results, fields) {
+            if (err) {
+                console.log(err.message);
+            }
+        });
+    
+        connection.end(function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+        }); 
     }
 
     
