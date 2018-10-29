@@ -55,6 +55,18 @@ module.exports = {
                 return console.log(err.message);
             }
         }); 
-    }
+    },
 
+    findAll(tableName) {
+            let connection = mysql.createConnection(config);
+            sql = `select * from ${tableName}`;
+            return connection.query(sql, function(err, results, fields) {
+                if (err) {
+                    console.log(err.message);
+                } else {
+                    console.log(results);
+                    return 'teste';
+                }
+            });
+    }
 }

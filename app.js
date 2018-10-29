@@ -16,4 +16,7 @@ atributosValores.push(new Atribute(name = 'rua', value = 'victor kessler'));
 atributosValores.push(new Atribute(name = 'numero', value = 31));
 
 // service.createTable('endereco', atributos);
-service.insertInto('endereco', atributosValores);
+// service.insertInto('endereco', atributosValores);
+var teste = wait(100).service.findAll('Eu');
+// console.log(teste);
+// teste
