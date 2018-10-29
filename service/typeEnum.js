@@ -1,5 +1,5 @@
 var Enum = require('enum');
 
-var myEnum = new Enum(['varchar', 'int', 'bit', 'decimal']);
+var typeEnum = new Enum({'string': 'varchar(50)', 'int':'int' , 'boolean':'bit', 'decimal':'decimal'});
 
-module.exports = myEnum
+module.exports = typeEnum

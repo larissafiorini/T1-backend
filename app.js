@@ -1,16 +1,19 @@
 
 var service = require('./service/baseService');
 var Atribute = require('./service/atribute');
+var Column = require('./service/column');
+var TypeEnum = require('./service/typeEnum');
 
 
 var atributos = [];
 var atributosValores = [];
 
-atributos.push(new Atribute('nome', 'varchar(50)', false, null));
-atributos.push(new Atribute('idade', 'int', true, null));
 
-atributosValores.push(new Atribute(name = 'nome', value = 'josé'));
-atributosValores.push(new Atribute(name = 'idade', value = 30));
+atributos.push(new Column('rua', TypeEnum.string, null, false));
+atributos.push(new Column('numero', TypeEnum.int, null, true));
 
-// service.createTable('Eu', atributos);
-service.insertInto('Eu', atributosValores);
+atributosValores.push(new Atribute(name = 'rua', value = 'victor kessler'));
+atributosValores.push(new Atribute(name = 'numero', value = 31));
+
+// service.createTable('endereco', atributos);
+service.insertInto('endereco', atributosValores);
