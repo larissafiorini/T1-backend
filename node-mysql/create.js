@@ -8,6 +8,7 @@ let sql = `create table if not exists exemplo(
     completed tinyint(1) not null default 0
 )`
 
+
 connection.query(sql);
  
 connection.end();
