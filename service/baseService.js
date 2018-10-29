@@ -106,61 +106,6 @@ module.exports = {
         return new Promise(
             (resolve, reject) => {
             let connection = mysql.createConnection(config);
-<<<<<<< HEAD
-            sql = `select * from ${tableName}`;
-            connection.query(sql, function(err, results, fields) {
-                if (err) {
-                    console.log(err.message);
-                } 
-                console.log(results[0].id);
-                console.log(results[0].nome);
-                console.log(results[0].idade);
-                console.log(String(results[0].id));
-                return String(results[0].id);
-            });
-            connection.end(function(err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-            }); 
-        },
-    deleteRow(tableName, row_name, row_value) { 
-        let connection = mysql.createConnection(config);
-
-        sql = `delete from ${tableName} WHERE ${row_name} = ${row_value}`
-        
-        console.log(sql);
-        connection.query(sql, function(err, results, fields) {
-            if (err) {
-                console.log(err.message);
-            }
-        });
-    
-        connection.end(function(err) {
-            if (err) {
-                return console.log(err.message);
-            }
-        }); 
-    },
-    updateRow(tableName, row_name,row_value ,new_row_name, new_row_value) { 
-        let connection = mysql.createConnection(config);
-
-        sql = `update ${tableName} set ${new_row_name} = '${new_row_value}' where ${row_name} = '${row_value}' ;`
-        
-        console.log(sql);
-        connection.query(sql, function(err, results, fields) {
-            if (err) {
-                console.log(err.message);
-            }
-            console.log(results);
-        });
-    
-        connection.end(function(err) {
-            if (err) {
-                return console.log(err.message);
-            }
-        }); 
-=======
             sql = `update ${tableName} set ${atribute.name} = ${atribute.value} where id = ${id}`
             connection.query(sql, function(err, results, fields) {
                 if (err) {
@@ -197,7 +142,6 @@ module.exports = {
                 }
             });
         })
->>>>>>> finalizar CRUD básico em baseService
     }
 
     
