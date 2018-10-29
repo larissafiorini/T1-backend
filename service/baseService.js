@@ -64,12 +64,15 @@ module.exports = {
                 if (err) {
                     console.log(err.message);
                 } 
+                console.log(results[0].id);
+                console.log(results[0].nome);
+                console.log(results[0].idade);
+                console.log(String(results[0].id));
+                return String(results[0].id);
             });
             connection.end(function(err) {
                 if (err) {
                     return console.log(err.message);
-                }else{
-                    console.log(results);
                 }
             }); 
         },
@@ -101,6 +104,7 @@ module.exports = {
             if (err) {
                 console.log(err.message);
             }
+            console.log(results);
         });
     
         connection.end(function(err) {
