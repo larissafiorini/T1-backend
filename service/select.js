@@ -41,4 +41,24 @@ findById(tableName, id) {
                 }); 
             });
         })
-}}
+},
+
+query(sql) {
+    return new Promise(
+        (resolve, reject) => {
+            let connection = mysql.createConnection(config);
+            return connection.query(sql, function(err, results, fields) {
+                if (err) {
+                    reject(err.message);
+                } else {
+                    resolve(results); 
+                }
+                connection.end(function(err) {
+                    if (err) {
+                        return console.log(err.message);
+                    }
+                }); 
+            });
+        }
+    )}
+}
