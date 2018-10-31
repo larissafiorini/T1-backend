@@ -9,6 +9,8 @@ var insert = require('./service/insert');
 var select = require('./service/select');
 var update = require('./service/update');
 var del = require('./service/delete');
+var Disciplina = require('./disciplina');
+var BaseController = require('./controller/baseController');
 
 
 // var atributos = [];
@@ -25,13 +27,15 @@ var del = require('./service/delete');
 // atributosValores.push(new Atribute(name = 'id_eu', value = '1'));
 
 // create.createTable('disciplina', atributos, foreignKeys);
+var disciplina = new Disciplina('português', 'letras', 3);
 
+BaseController.insert(disciplina, 'disciplina');
 
 // insert.insertInto('disciplina', atributosValores);
 
-select.query('select e.nome from eu e inner join disciplina d on d.id_eu = e.id;').then((res) => {
-    console.log(res);
-});
+// select.query('select e.nome from eu e inner join disciplina d on d.id_eu = e.id;').then((res) => {
+//     console.log(res);
+// });
 
 // // var teste
 // select.findAll('Eu').then((value) => { 
