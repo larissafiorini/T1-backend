@@ -28,6 +28,7 @@ findById(tableName, id) {
         (resolve, reject) => {
             let connection = mysql.createConnection(config);
             sql = `select * from ${tableName} where id = ${id}`;
+            console.log(sql);
             return connection.query(sql, function(err, results, fields) {
                 if (err) {
                     reject(err.message);

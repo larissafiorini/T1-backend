@@ -1,4 +1,4 @@
-
+var express = require('express');
 var service = require('./service/baseService');
 var Atribute = require('./service/atribute');
 var Column = require('./service/column');
@@ -11,8 +11,10 @@ var update = require('./service/update');
 var del = require('./service/delete');
 var Disciplina = require('./disciplina');
 var BaseController = require('./controller/baseController');
+var DisciplinaController = require('./disciplinaController');
+const router = express.Router();
 
-
+const app = express();
 // var atributos = [];
 // var atributosValores = [];
 // var foreignKeys = [];
@@ -27,9 +29,21 @@ var BaseController = require('./controller/baseController');
 // atributosValores.push(new Atribute(name = 'id_eu', value = '1'));
 
 // create.createTable('disciplina', atributos, foreignKeys);
-var disciplina = new Disciplina('português', 'letras', 3);
+// var disciplina = new Disciplina('ciências', 'física', 1);
+// console.log(disciplina);
+// var baseController = new BaseController('disciplina');
+// baseController.insert(disciplina, 'disciplina');
+var disciplinaController = new DisciplinaController();
 
-BaseController.insert(disciplina, 'disciplina');
+console.log(disciplinaController);
+router.get('/disciplina', disciplinaController.findAll);
+router.get('/disciplina/:id', disciplinaController.findById);
+router.post('/disciplina', disciplinaController.insert);
+router.put('/disciplina/:id', disciplinaController.update);
+router.delete('/disciplina/:id', disciplinaController.delete);
+
+app.use('/api', router);
+module.exports = app;
 
 // insert.insertInto('disciplina', atributosValores);
 
