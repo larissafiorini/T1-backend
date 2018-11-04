@@ -13,6 +13,8 @@ var Disciplina = require('./disciplina');
 var BaseController = require('./controller/baseController');
 var DisciplinaController = require('./disciplinaController');
 const router = express.Router();
+var config = require('./config.js');
+var createTables = require('./createTables.js');
 
 const app = express();
 // var atributos = [];
@@ -33,7 +35,13 @@ const app = express();
 // console.log(disciplina);
 // var baseController = new BaseController('disciplina');
 // baseController.insert(disciplina, 'disciplina');
-var disciplinaController = new DisciplinaController();
+
+if (config.updateDatabase) {
+    createTables.createTables();
+}
+
+
+var disciplinaController = new BaseController();
 
 console.log(disciplinaController);
 router.get('/disciplina', disciplinaController.findAll);

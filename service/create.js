@@ -2,7 +2,7 @@ let mysql  = require('mysql');
 let config = require('../node-mysql/config.js');
 
 module.exports = {
-    createTable(name, atributes, foreignKeys = null){
+    async createTable(name, atributes, foreignKeys = []){
         let connection = mysql.createConnection(config);
         let sql = `create table if not exists ${name}(
             id int primary key auto_increment,`
@@ -14,19 +14,20 @@ module.exports = {
 
         sql = sql.substring(0, sql.length-1);
         sql += ')';
-        connection.query(sql, function(err, results, fields) {
+        console.log(sql);
+        connection.query(sql, async function(err, results, fields) {
             if (err) {
                 console.log(err.message);
             }
-            sql = '';
             for(var i = 0; i < foreignKeys.length; i++) {
-                sql += `alter table ${name} add constraint ${foreignKeys[i].name} foreign key (${foreignKeys[i].columnName}) references ${foreignKeys[i].referenceTable} (${foreignKeys[i].referenceColumn}); `
+                sql = `alter table ${name} add constraint ${foreignKeys[i].name} foreign key (${foreignKeys[i].columnName}) references ${foreignKeys[i].referenceTable} (${foreignKeys[i].referenceColumn}); `
+                console.log(sql);
+                await connection.query(sql, function(err, results, fields) {
+                    if (err) {
+                        console.log(err.message);
+                    }
+                });
             }
-            connection.query(sql, function(err, results, fields) {
-                if (err) {
-                    console.log(err.message);
-                }
-            });
         
             connection.end(function(err) {
                 if (err) {
