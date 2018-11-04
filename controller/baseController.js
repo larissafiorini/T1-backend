@@ -26,6 +26,9 @@ class BaseController {
             const tableName = pathData[0];
             const id = pathData[1];
             const data = await selectService.findById(tableName, id);
+            if (data.length == 0) {
+                return res.status(500).send({ error: `${tableName} with id ${id} not found` });
+            }
             return res.send(data);
         } catch (error) { 
             return error
@@ -37,13 +40,15 @@ class BaseController {
     async insert(req, res) {
         const tableName = req.route.path.substr(1);
         const atributes = [];
-        console.log(req);
         const object = req.body; 
-        console.log(object)
         for (let atribute in object) {
             atributes.push(new Atribute(atribute, object[atribute]));
         }
-        insertService.insertInto(tableName, atributes);
+        var response = await insertService.insertInto(tableName, atributes);
+        if (response.affectedRows == 0) {
+            return res.status(500).send({ error: `${tableName} with id ${id} not found` });
+        }
+        return res.send(response);
     }
 
     async update(req, res) {
@@ -53,11 +58,14 @@ class BaseController {
         const id = pathData[1];
         const atributes = [];
         const object = req.body; 
-        console.log(object)
         for (let atribute in object) {
             atributes.push(new Atribute(atribute, object[atribute]));
         }
-        updateService.update(tableName, atributes, id);
+        var response = await updateService.update(tableName, atributes, id);
+        if (response.affectedRows == 0) {
+            return res.status(500).send({ error: `${tableName} with id ${id} not found` });
+        }
+        return res.send(response);
     }
 
     async delete(req, res) {
@@ -65,7 +73,11 @@ class BaseController {
         const pathData = path.split('/');
         const tableName = pathData[0];
         const id = pathData[1];
-        return res.send(deleteService.delete(tableName, id));
+        var response = await deleteService.delete(tableName, id)
+        if (response.affectedRows == 0) {
+            return res.status(500).send({ error: `${tableName} with id ${id} not found` });
+        }
+        return res.send(response);
     }
 }
 module.exports = BaseController
