@@ -14,7 +14,7 @@ class BaseController {
             return res.send(data);
         } catch (error) { 
             return error
-          .status(httpStatus.INTERNAL_SERVER_ERROR)
+          .status(500)
           .json({ error: 'Ocorreu um erro ao buscar a lista de professores' });
       }
     }
@@ -32,7 +32,7 @@ class BaseController {
             return res.send(data);
         } catch (error) { 
             return error
-          .status(httpStatus.INTERNAL_SERVER_ERROR)
+          .status(500)
           .json({ error: 'Ocorreu um erro ao buscar a lista de professores' });
       }
     }

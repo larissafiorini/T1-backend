@@ -1,6 +1,6 @@
 let config = {
     recreateDatabase: false,
-    updateDatabase: true
+    updateDatabase: false
 };
 
 module.exports = config;

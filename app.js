@@ -17,6 +17,13 @@ var config = require('./config.js');
 var createTables = require('./createTables.js');
 
 const app = express();
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", 'http://localhost:4200');
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+  });
 // var atributos = [];
 // var atributosValores = [];
 // var foreignKeys = [];
@@ -51,6 +58,7 @@ router.put('/disciplina/:id', disciplinaController.update);
 router.delete('/disciplina/:id', disciplinaController.delete);
 
 app.use('/api', router);
+
 module.exports = app;
 
 // insert.insertInto('disciplina', atributosValores);
