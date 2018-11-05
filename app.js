@@ -37,6 +37,7 @@ router.get('/professor/:id', professorController.findById)
 router.post('/professor', professorController.insert)
 router.put('/professor/:id', professorController.update)
 router.delete('/professor/:id', professorController.delete)
+router.get('/professor/find_by_disciplina/:id', professorController.findByDisciplina)
 
 app.use(bodyParser.json());
 app.use('/api', router);
