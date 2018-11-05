@@ -1,4 +1,5 @@
 var BaseController = require('./baseController');
+const selectService = require('../service/select');
 
 class ProfessorController extends BaseController {
 
@@ -7,9 +8,9 @@ class ProfessorController extends BaseController {
             const path = req.url.substr(1);
             const pathData = path.split('/');
             const id = pathData[2];
-            sql = "select p.id, p.nome, p.idade " 
-            sql += "from disciplina d inner join disciplina_professor dp on d.id = dp.id_disciplina "
-            sql += "innse join professor p on dp.id_professor = p.id "
+            var sql = "select p.id, p.nome, p.idade ";
+            sql += "from disciplina d inner join disciplina_professor dp on d.id = dp.id_disciplina ";
+            sql += "inner join professor p on dp.id_professor = p.id ";
             sql += `where d.id = ${id}`;
             const data = await selectService.query(sql);
             if (data.length == 0) {
@@ -17,12 +18,11 @@ class ProfessorController extends BaseController {
             }
             return res.send(data);
         } catch (error) { 
-            return error
-          .status(500)
-          .json({ error: 'Ocorreu um erro ao buscar a lista de professores' });
+            return res
+            .status(500)
+            .json({ error: 'Ocorreu um erro ao buscar a lista de professores' });
       }
     }
-
 }
 
 module.exports = ProfessorController
