@@ -1,4 +1,3 @@
-
 let config = {
     host: 'localhost',
     user: 'root',

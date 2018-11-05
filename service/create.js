@@ -11,21 +11,14 @@ module.exports = {
             let value = !!atributes[i].value ? `default ${value}` : '';
             sql += `${atributes[i].name} ${atributes[i].type.value} ${isNull} ${value},`
         }
-
+        for(var i = 0; i < foreignKeys.length; i++) {
+            sql += ` constraint ${foreignKeys[i].name} foreign key (${foreignKeys[i].columnName}) references ${foreignKeys[i].referenceTable} (${foreignKeys[i].referenceColumn}),` 
+        }
         sql = sql.substring(0, sql.length-1);
         sql += ')';
-        connection.query(sql, async function(err, results, fields) {
+        await connection.query(sql, function(err, results, fields) {
             if (err) {
                 console.log(err.message);
-            }
-            console.log(results);
-            for(var i = 0; i < foreignKeys.length; i++) {
-                sql = `alter table ${name} add constraint ${foreignKeys[i].name} foreign key (${foreignKeys[i].columnName}) references ${foreignKeys[i].referenceTable} (${foreignKeys[i].referenceColumn}); `
-                await connection.query(sql, function(err, results, fields) {
-                    if (err) {
-                        console.log(err.message);
-                    }
-                });
             }
         
             connection.end(function(err) {

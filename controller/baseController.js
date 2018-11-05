@@ -56,12 +56,8 @@ class BaseController {
         const pathData = path.split('/');
         const tableName = pathData[0];
         const id = pathData[1];
-        const atributes = [];
         const object = req.body; 
-        for (let atribute in object) {
-            atributes.push(new Atribute(atribute, object[atribute]));
-        }
-        var response = await updateService.update(tableName, atributes, id);
+        var response = await updateService.update(tableName, object, id);
         if (response.affectedRows == 0) {
             return res.status(500).send({ error: `${tableName} with id ${id} not found` });
         }
