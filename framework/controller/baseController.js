@@ -7,6 +7,7 @@ const Atribute = require('../service/atribute');
 
 class BaseController {
 
+    // GET '/tableName'
     async findAll(req, res) {
         try {
             const tableName = req.route.path.substr(1);
@@ -19,6 +20,7 @@ class BaseController {
       }
     }
 
+    //GET '/tableName/:id'
     async findById(req, res) {
         try {
             const path = req.url.substr(1);
@@ -37,6 +39,7 @@ class BaseController {
       }
     }
 
+    // POST '/tableName'
     async insert(req, res) {
         const tableName = req.route.path.substr(1);
         const atributes = [];
@@ -51,6 +54,7 @@ class BaseController {
         return res.send(response);
     }
 
+    // PUT '/tableName/:id'
     async update(req, res) {
         const path = req.url.substr(1);
         const pathData = path.split('/');
@@ -64,6 +68,7 @@ class BaseController {
         return res.send(response);
     }
 
+    // DELETE '/tableName/:id'
     async delete(req, res) {
         const path = req.url.substr(1);
         const pathData = path.split('/');
