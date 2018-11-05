@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser')
 var express = require('express');
-var config = require('./framework/config');
+var config = require('./config');
 var createTables = require('./createTables');
 var DisciplinaController = require('./controller/disciplinaController');
 var ProfessorController = require('./controller/professorController');
