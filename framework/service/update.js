@@ -9,11 +9,10 @@ update(tableName, object, id) {
         let connection = mysql.createConnection(config);
         sql = `update ${tableName} set`
         for (let atribute in object) {
-            sql += ` ${atribute} = ${object[atribute]} and`
+            sql += ` ${atribute} = '${object[atribute]}',`
         }
-        sql = sql.substring(0, sql.length-3);
-        sql += `where id = ${id}`
-
+        sql = sql.substring(0, sql.length-1);
+        sql += ` where id = ${id}`
         connection.query(sql, function(err, results, fields) {
             if (err) {
                 reject(err.message);
