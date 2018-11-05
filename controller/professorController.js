@@ -1,5 +1,5 @@
-var BaseController = require('./baseController');
-const selectService = require('../service/select');
+var BaseController = require('../framework/controller/baseController');
+const selectService = require('../framework/service/select');
 
 class ProfessorController extends BaseController {
 
